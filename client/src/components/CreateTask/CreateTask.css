@@ -1,0 +1,24 @@
+.create-task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: aqua;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.dashboard-form {
+  border: 0px solid grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
