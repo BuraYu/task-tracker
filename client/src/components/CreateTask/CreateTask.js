@@ -17,6 +17,8 @@ const CreateTask = () => {
           <option value="mercedes">Mercedes</option>
           <option value="audi">Audi</option>
         </select>
+        <label htmlFor="">Owner</label>
+        <input type="text" />
       </form>
       <button type="submit">Submit</button>
     </div>
