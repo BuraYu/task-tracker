@@ -3,8 +3,51 @@ import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
 import './FavouriteTasks.css'
 import DetailsView from '../../components/DetailsView/DetailsView'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const FavouriteTasks = () => {
+  const [tasks, setTasks] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [selectedTask, setSelectedTask] = useState(null)
+  const [receivedData, setReceivedData] = useState('')
+
+  useEffect(() => {
+    setLoading(true)
+    axios
+      .get(`http://localhost:5555/tasks/`)
+      .then((response) => {
+        setTasks(response.data.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+        setLoading(false)
+      })
+  }, [receivedData])
+
+  const receiveDataFromChild = (data) => {
+    console.log('Received data in parent:', data)
+    setReceivedData(data)
+  }
+
+  function formatDate(input) {
+    const date = new Date(input)
+    const day = date.getDate()
+    const month = date.getMonth() + 1 // Month is zero-based
+    const year = date.getFullYear()
+
+    // Pad single-digit day and month with leading zero if needed
+    const formattedDay = day < 10 ? `0${day}` : day
+    const formattedMonth = month < 10 ? `0${month}` : month
+
+    return `${formattedDay}.${formattedMonth}.${year}`
+  }
+
+  const handleTaskClick = (clickedTask) => {
+    setSelectedTask({ data: clickedTask })
+  }
+
   return (
     <>
       <Header />
@@ -12,57 +55,50 @@ const FavouriteTasks = () => {
         <Navbar className="navbar" />
         <div className="content--container">
           <div className="open-tasks--container-fin">
-            <table id="tasks">
-              <thead>
-                <th>Title</th>
-                <th>created on</th>
-                <th>status</th>
-                <th>Priority</th>
-                <th>Owner</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Do this</td>
-                  <td>Do that</td>
-                  <td>Don't do anything</td>
-                  <td>Test this</td>
-                  <td>Hurr durr</td>
-                </tr>
-                <tr>
-                  <td>Do this</td>
-                  <td>Do that</td>
-                  <td>Don't do anything</td>
-                  <td>Test this</td>
-                  <td>Hurr durr</td>
-                </tr>
-                <tr>
-                  <td>Do this</td>
-                  <td>Do that</td>
-                  <td>Don't do anything</td>
-                  <td>Test this</td>
-                  <td>Hurr durr</td>
-                </tr>
-                <tr>
-                  <td>Do this</td>
-                  <td>Do that</td>
-                  <td>Don't do anything</td>
-                  <td>Test this</td>
-                  <td>Hurr durr</td>
-                </tr>
-                <tr>
-                  <td>Do this</td>
-                  <td>Do that</td>
-                  <td>Don't do anything</td>
-                  <td>Test this</td>
-                  <td>Hurr durr</td>
-                </tr>
-              </tbody>
-            </table>
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <table id="tasks">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>created on</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Owner</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tasks.length > 0 ? (
+                    tasks.map((task) => (
+                      <tr
+                        key={task._id}
+                        onClick={() => handleTaskClick(task._id)}
+                      >
+                        <td>{task.title}</td>
+                        <td>{formatDate(task.createdAt)}</td>
+                        <td>{task.status}</td>
+                        <td>{task.priority}</td>
+                        <td>{task.owner}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5">No open tasks found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            )}
           </div>
-          <DetailsView />
+          <DetailsView
+            data={selectedTask}
+            sendDataToParent={receiveDataFromChild}
+          />
         </div>
       </div>
     </>
   )
 }
+
 export default FavouriteTasks

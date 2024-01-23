@@ -26,17 +26,15 @@ const OpenTasks = () => {
   }, [receivedData])
 
   const receiveDataFromChild = (data) => {
-    console.log('Received data in parent:', data)
     setReceivedData(data)
   }
 
   function formatDate(input) {
     const date = new Date(input)
     const day = date.getDate()
-    const month = date.getMonth() + 1 // Month is zero-based
+    const month = date.getMonth() + 1
     const year = date.getFullYear()
 
-    // Pad single-digit day and month with leading zero if needed
     const formattedDay = day < 10 ? `0${day}` : day
     const formattedMonth = month < 10 ? `0${month}` : month
 
