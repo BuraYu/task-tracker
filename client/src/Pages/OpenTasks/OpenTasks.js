@@ -4,13 +4,12 @@ import './OpenTasks.css'
 import DetailsView from '../../components/DetailsView/DetailsView'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
 
 const OpenTasks = () => {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(false)
   const [selectedTask, setSelectedTask] = useState(null)
-  const { id } = useParams()
+  const [receivedData, setReceivedData] = useState('')
 
   useEffect(() => {
     setLoading(true)
@@ -24,7 +23,12 @@ const OpenTasks = () => {
         console.log(error)
         setLoading(false)
       })
-  }, [])
+  }, [receivedData])
+
+  const receiveDataFromChild = (data) => {
+    console.log('Received data in parent:', data)
+    setReceivedData(data)
+  }
 
   function formatDate(input) {
     const date = new Date(input)
@@ -40,7 +44,7 @@ const OpenTasks = () => {
   }
 
   const handleTaskClick = (clickedTask) => {
-    setSelectedTask(clickedTask)
+    setSelectedTask({ data: clickedTask })
   }
 
   return (
@@ -86,7 +90,10 @@ const OpenTasks = () => {
               </table>
             )}
           </div>
-          <DetailsView data={selectedTask} />
+          <DetailsView
+            data={selectedTask}
+            sendDataToParent={receiveDataFromChild}
+          />
         </div>
       </div>
     </>

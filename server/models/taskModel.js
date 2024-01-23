@@ -1,4 +1,18 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from 'mongoose';
+
+const commentSchema = mongoose.Schema(
+  {
+    // Define the schema for comments
+    text: {
+      type: String,
+      required: true,
+    },
+    // ... other fields for comments
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const taskSchema = mongoose.Schema(
   {
@@ -22,12 +36,14 @@ const taskSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    comments: [commentSchema], 
   },
   {
     timestamps: true,
   }
 );
 
+const Task = mongoose.model('Task', taskSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
-
-export const Task = mongoose.model("tasks", taskSchema);
+export { Task, Comment };

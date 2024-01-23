@@ -15,6 +15,7 @@ function App() {
           <Route path="/OpenTasks" element={<OpenTasks />} />
           <Route path="/favTasks" element={<FavouriteTasks />} />
           <Route path="/CreatedByMe" element={<CreatedByMe />} />
+
           <Route path="*" element={<Empty />} />
         </Routes>
       </Router>

@@ -1,6 +1,5 @@
 import express from "express";
-import { Task } from "../models/taskModel.js";
-// import { Comment } from "../models/commentModel.js";
+import { Task, Comment } from "../models/taskModel.js";
 
 const router = express.Router();
 
@@ -66,17 +65,17 @@ router.get("/:id", async (request, response) => {
 // Route for Update a task
 router.put("/:id", async (request, response) => {
   try {
-    if (
-      !request.body.title ||
-      !request.body.status ||
-      !request.body.desc ||
-      !request.body.priority ||
-      !request.body.owner
-    ) {
-      return response.status(400).send({
-        message: "Send all required fields: title, author, publishYear",
-      });
-    }
+    // if (
+    //   !request.body.title ||
+    //   !request.body.status ||
+    //   !request.body.desc ||
+    //   !request.body.priority ||
+    //   !request.body.owner
+    // ) {
+    //   return response.status(400).send({
+    //     message: "Send all required fields",
+    //   });
+    // }
 
     const { id } = request.params;
 
@@ -92,8 +91,6 @@ router.put("/:id", async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
-
-
 
 // Route for Delete a task
 router.delete("/:id", async (request, response) => {
@@ -115,6 +112,81 @@ router.delete("/:id", async (request, response) => {
   
 });
 
+router.post("/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const task = await Task.findById(id);
+
+    if (!task) {
+      return response.status(404).json({ message: "Task not found" });
+    }
+
+    const { text } = request.body; // Ensure 'text' is provided in the request body
+
+    if (!text) {
+      return response.status(400).json({ message: "Comment text is required" });
+    }
+
+    const newComment = {
+      text,
+      // other fields for the comment
+    };
+
+    task.comments.push(newComment);
+    await task.save();
+
+    return response.status(201).json({ message: "Comment added successfully" });
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+router.get("/:id/comments", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const task = await Task.findById(id);
+
+    if (!task) {
+      return response.status(404).json({ message: "Task not found" });
+    }
+
+    const comments = task.comments;
+    return response.status(200).json(comments);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
+router.post("/:id/comments", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const task = await Task.findById(id);
+
+    if (!task) {
+      return response.status(404).json({ message: "Task not found" });
+    }
+
+    const { text } = request.body;
+
+    if (!text) {
+      return response.status(400).json({ message: "Comment text is required" });
+    }
+
+    const newComment = {
+      text,
+    };
+
+    task.comments.push(newComment);
+    await task.save();
+
+    return response.status(201).json({ message: "Comment added successfully" });
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 
 
