@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 const OpenTasks = () => {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(false)
+  const [selectedTask, setSelectedTask] = useState(null)
   const { id } = useParams()
 
   useEffect(() => {
@@ -38,6 +39,10 @@ const OpenTasks = () => {
     return `${formattedDay}.${formattedMonth}.${year}`
   }
 
+  const handleTaskClick = (clickedTask) => {
+    setSelectedTask(clickedTask)
+  }
+
   return (
     <>
       <Header />
@@ -59,11 +64,12 @@ const OpenTasks = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {console.log(tasks)}
-
                   {tasks.length > 0 ? (
                     tasks.map((task) => (
-                      <tr key={task._id}>
+                      <tr
+                        key={task._id}
+                        onClick={() => handleTaskClick(task._id)}
+                      >
                         <td>{task.title}</td>
                         <td>{formatDate(task.createdAt)}</td>
                         <td>{task.status}</td>
@@ -80,7 +86,7 @@ const OpenTasks = () => {
               </table>
             )}
           </div>
-          <DetailsView />
+          <DetailsView data={selectedTask} />
         </div>
       </div>
     </>
