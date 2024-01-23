@@ -1,5 +1,6 @@
 import express from "express";
 import { Task } from "../models/taskModel.js";
+// import { Comment } from "../models/commentModel.js";
 
 const router = express.Router();
 
@@ -92,6 +93,8 @@ router.put("/:id", async (request, response) => {
   }
 });
 
+
+
 // Route for Delete a task
 router.delete("/:id", async (request, response) => {
   try {
@@ -108,6 +111,11 @@ router.delete("/:id", async (request, response) => {
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
+
+  
 });
+
+
+
 
 export default router;

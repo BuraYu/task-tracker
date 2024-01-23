@@ -4,7 +4,7 @@ import axios from 'axios'
 import './DetailsView.css'
 
 const DetailsView = (data) => {
-  const [task, setTask] = useState([])
+  const [task, setTask] = useState(null)
   const [loading, setLoading] = useState(false)
   const taskId = data.data
   console.log(taskId)
@@ -15,9 +15,7 @@ const DetailsView = (data) => {
       .get(`http://localhost:5555/tasks/${taskId}`)
       .then((response) => {
         setTask(response.data)
-        console.log('loaded data', response.data)
         setLoading(false)
-        console.log('this is the task', task)
       })
       .catch((error) => {
         console.log(error)
@@ -37,19 +35,19 @@ const DetailsView = (data) => {
 
   //   return `${formattedDay}.${formattedMonth}.${year}`
   // }
-  console.log('status', task.status)
-  console.log('prio', task.priority)
 
-  return (
+  return task ? (
     <div className="open-tasks--container-res">
       <div className="details-view-title-container">
         <span>{data.data}</span>
-        <button class="btn-close">X</button>
+        <button className="btn-close" onClick={() => setTask(null)}>
+          X
+        </button>
       </div>
-      <hr></hr>
+      <hr />
       <h1>{task.title}</h1>
       <h4>{task.owner}</h4>
-      <hr></hr>
+      <hr />
       <div className="status-task">
         <div className="select">
           <label htmlFor="">Status</label>
@@ -68,18 +66,18 @@ const DetailsView = (data) => {
           </select>
         </div>
       </div>
-      <hr></hr>
-
+      <hr />
       <span>{task.desc}</span>
-      <hr></hr>
+      <hr />
       <form>
         <label htmlFor=""></label>
         <textarea name="postContent" rows={5} cols={50} />
       </form>
       <button type="submit">Add comment</button>
-
-      <hr></hr>
+      <hr />
     </div>
+  ) : (
+    <span>Click on the task</span>
   )
 }
 export default DetailsView
