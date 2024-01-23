@@ -25,6 +25,19 @@ const OpenTasks = () => {
       })
   }, [])
 
+  function formatDate(input) {
+    const date = new Date(input)
+    const day = date.getDate()
+    const month = date.getMonth() + 1 // Month is zero-based
+    const year = date.getFullYear()
+
+    // Pad single-digit day and month with leading zero if needed
+    const formattedDay = day < 10 ? `0${day}` : day
+    const formattedMonth = month < 10 ? `0${month}` : month
+
+    return `${formattedDay}.${formattedMonth}.${year}`
+  }
+
   return (
     <>
       <Header />
@@ -33,7 +46,7 @@ const OpenTasks = () => {
         <div className="content--container">
           <div className="open-tasks--container-fin">
             {loading ? (
-              <p>Loading...</p> // You can replace this with a loading spinner component
+              <p>Loading...</p>
             ) : (
               <table id="tasks">
                 <thead>
@@ -52,7 +65,7 @@ const OpenTasks = () => {
                     tasks.map((task) => (
                       <tr key={task._id}>
                         <td>{task.title}</td>
-                        <td>{task.createdAt}</td>
+                        <td>{formatDate(task.createdAt)}</td>
                         <td>{task.status}</td>
                         <td>{task.priority}</td>
                         <td>{task.owner}</td>
