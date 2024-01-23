@@ -8,17 +8,19 @@ router.post("/", async (request, response) => {
   try {
     if (
       !request.body.title ||
-      !request.body.author ||
-      !request.body.publishYear
+      !request.body.status ||
+      !request.body.priority ||
+      !request.body.owner
     ) {
       return response.status(400).send({
-        message: "Send all required fields: title, author, publishYear",
+        message: "Send all required fields.",
       });
     }
     const newTask = {
       title: request.body.title,
-      author: request.body.author,
-      publishYear: request.body.publishYear,
+      status: request.body.status,
+      priority: request.body.priority,
+      owner: request.body.owner,
     };
 
     const task = await Task.create(newTask);
@@ -64,8 +66,9 @@ router.put("/:id", async (request, response) => {
   try {
     if (
       !request.body.title ||
-      !request.body.author ||
-      !request.body.publishYear
+      !request.body.status ||
+      !request.body.priority ||
+      !request.body.owner
     ) {
       return response.status(400).send({
         message: "Send all required fields: title, author, publishYear",

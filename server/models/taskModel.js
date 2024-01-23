@@ -6,12 +6,16 @@ const taskSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    author: {
+    status: {
       type: String,
       required: true,
     },
-    publishYear: {
-      type: Number,
+    priority: {
+      type: String,
+      required: true,
+    },
+    owner: {
+      type: String,
       required: true,
     },
   },
