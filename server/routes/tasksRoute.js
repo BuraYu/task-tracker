@@ -9,6 +9,7 @@ router.post("/", async (request, response) => {
     if (
       !request.body.title ||
       !request.body.status ||
+      !request.body.desc ||
       !request.body.priority ||
       !request.body.owner
     ) {
@@ -19,6 +20,7 @@ router.post("/", async (request, response) => {
     const newTask = {
       title: request.body.title,
       status: request.body.status,
+      desc: request.body.desc,
       priority: request.body.priority,
       owner: request.body.owner,
     };
@@ -38,7 +40,6 @@ router.get("/", async (request, response) => {
     const tasks = await Task.find({});
 
     return response.status(200).json({
-      count: tasks.length,
       data: tasks,
     });
   } catch (error) {
@@ -67,6 +68,7 @@ router.put("/:id", async (request, response) => {
     if (
       !request.body.title ||
       !request.body.status ||
+      !request.body.desc ||
       !request.body.priority ||
       !request.body.owner
     ) {

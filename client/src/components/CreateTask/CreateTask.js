@@ -12,10 +12,10 @@ const CreateTask = () => {
         <textarea name="postContent" rows={5} cols={50} />
         <label htmlFor="">Priority</label>
         <select name="cars" id="cars">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+          <option value="volvo">CODE RED</option>
+          <option value="saab">High Prio</option>
+          <option value="mercedes">Mid Prio</option>
+          <option value="audi">Low Prio</option>
         </select>
         <label htmlFor="">Owner</label>
         <input type="text" />
