@@ -12,7 +12,7 @@ app.use(express.json());
 //middleware for handling cors policy
 //First option: Allow all origins with default of cors
 
-// app.use(cors());
+app.use(cors());
 
 //allow custom origins
 // app.use(
@@ -28,7 +28,7 @@ app.get("/", (request, response) => {
   return response.status(234).send("Welcome to MERN");
 });
 
-app.use("/books", taskRoute);
+app.use("/tasks", taskRoute);
 
 mongoose
   .connect(mongoDBURL)
