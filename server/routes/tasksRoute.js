@@ -188,6 +188,31 @@ router.post("/:id/comments", async (request, response) => {
   }
 });
 
+router.delete("/:taskId/comments/:commentId", async (request, response) => {
+  try {
+    const { taskId, commentId } = request.params;
+
+    const task = await Task.findById(taskId);
+
+    if (!task) {
+      return response.status(404).json({ message: "Task not found" });
+    }
+
+    const commentIndex = task.comments.findIndex((comment) => comment._id.toString() === commentId);
+
+    if (commentIndex === -1) {
+      return response.status(404).json({ message: "Comment not found" });
+    }
+
+    task.comments.splice(commentIndex, 1);
+    await task.save();
+
+    return response.status(200).json({ message: "Comment deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 
 export default router;

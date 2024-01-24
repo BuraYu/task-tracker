@@ -10,7 +10,6 @@ const DetailsView = ({ data, sendDataToParent }) => {
   const [commentContent, setCommentContent] = useState('')
   const [comments, setComments] = useState([])
 
-  // Ensure data is not null before trying to access data.data
   const taskId = data ? data.data : null
 
   useEffect(() => {
@@ -41,13 +40,11 @@ const DetailsView = ({ data, sendDataToParent }) => {
 
   const handlePriorityChange = (event) => {
     const newPriority = event.target.value
-    console.log('New Priority:', newPriority)
 
     if (taskId) {
       axios
         .put(`http://localhost:5555/tasks/${taskId}`, { priority: newPriority })
         .then((response) => {
-          console.log('Priority Updated:', response.data)
           setTask({ ...task, priority: newPriority })
           setSelectedPriority(newPriority)
           sendDataToParent({ ...task, priority: newPriority })
@@ -60,13 +57,11 @@ const DetailsView = ({ data, sendDataToParent }) => {
 
   const handleStatusChange = (event) => {
     const newStatus = event.target.value
-    console.log('New Status:', newStatus)
 
     if (taskId) {
       axios
         .put(`http://localhost:5555/tasks/${taskId}`, { status: newStatus })
         .then((response) => {
-          console.log('Status Updated:', response.data)
           setTask({ ...task, status: newStatus })
           setSelectedStatus(newStatus)
           sendDataToParent({ ...task, status: newStatus })
@@ -85,7 +80,7 @@ const DetailsView = ({ data, sendDataToParent }) => {
         await axios.post(`http://localhost:5555/tasks/${taskId}/comments`, {
           text: commentContent,
         })
-        // Fetch comments again to update the UI with the latest comments
+
         const commentsResponse = await axios.get(
           `http://localhost:5555/tasks/${taskId}/comments`
         )
@@ -97,15 +92,35 @@ const DetailsView = ({ data, sendDataToParent }) => {
     }
   }
 
+  const handleDeleteComment = async (commentId) => {
+    if (taskId && commentId) {
+      const confirmDelete = window.confirm(
+        'Are you sure you want to delete this comment?'
+      )
+
+      if (confirmDelete) {
+        try {
+          await axios.delete(
+            `http://localhost:5555/tasks/${taskId}/comments/${commentId}`
+          )
+          const commentsResponse = await axios.get(
+            `http://localhost:5555/tasks/${taskId}/comments`
+          )
+          setComments(commentsResponse.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+  }
+
   function formatDate(input) {
     const date = new Date(input)
     const day = date.getDate()
     const month = date.getMonth() + 1
     const year = date.getFullYear()
-
     const formattedDay = day < 10 ? `0${day}` : day
     const formattedMonth = month < 10 ? `0${month}` : month
-
     return `${formattedDay}.${formattedMonth}.${year}`
   }
 
@@ -152,7 +167,6 @@ const DetailsView = ({ data, sendDataToParent }) => {
       <hr />
       <span>{task.desc}</span>
       <hr />
-
       <form onSubmit={handleCommentSubmit}>
         <label htmlFor="commentContent">Comment:</label>
         <textarea
@@ -171,8 +185,10 @@ const DetailsView = ({ data, sendDataToParent }) => {
         <ul>
           {comments.map((comment) => (
             <li key={comment._id}>
-              {comment.text}
-              {formatDate(comment.createdAt)}
+              {comment.text} {formatDate(comment.createdAt)}
+              <button onClick={() => handleDeleteComment(comment._id)}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>

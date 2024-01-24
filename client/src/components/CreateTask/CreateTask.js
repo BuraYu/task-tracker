@@ -5,26 +5,23 @@ import './CreateTask.css'
 const CreateTask = () => {
   const [taskData, setTaskData] = useState({
     title: '',
-    status: 'To Do', // You may need to set a default value for status
+    status: 'To Do',
     desc: '',
-    priority: 'Low', // You may need to set a default value for priority
+    priority: 'Low',
     owner: '',
   })
 
   const handleSubmit = async (e) => {
     try {
-      // Send a POST request to the server
       const response = await axios.post('http://localhost:5555/tasks', taskData)
 
       console.log('Task created successfully:', response.data)
-      // You may want to perform additional actions, such as updating the UI or state
     } catch (error) {
       console.error('Error creating task:', error.message)
     }
   }
 
   const handleChange = (e) => {
-    // Update the taskData state as the user types
     setTaskData({
       ...taskData,
       [e.target.name]: e.target.value,
