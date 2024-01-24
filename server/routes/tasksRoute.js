@@ -1,5 +1,8 @@
 import express from "express";
-import { Task, Comment } from "../models/taskModel.js";
+import { Task } from "../models/taskModel.js";
+// import { OpenAIAPIKey } from '../config.js';
+// import OpenAI from "openai";
+
 
 const router = express.Router();
 
@@ -213,6 +216,25 @@ router.delete("/:taskId/comments/:commentId", async (request, response) => {
     return response.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+// router.post('/chatgpt', async (request, response) => {
+//   try {
+//     const { userMessage } = request.body;
+
+//     const openai = new OpenAI({ key: OpenAIAPIKey });
+
+//     const completion = await openai.chat.completions.create({
+//       messages: [{ role: 'user', content: userMessage }],
+//       model: 'gpt-3.5-turbo',
+//     });
+
+//     const message = completion.choices[0];
+//     return response.status(200).json(message);
+//   } catch (error) {
+//     console.error(error);
+//     return response.status(500).json({ message: 'Internal Server Error' });
+//   }
+// });
 
 
 export default router;

@@ -11,6 +11,34 @@ const CreateTask = () => {
     owner: '',
   })
 
+  // const test = () => {
+  //   fetchChatGPT('tell me a joke')
+  // }
+  // const fetchChatGPT = async (userMessage) => {
+  //   try {
+  //     const response = await fetch('http://localhost:5555/chatgpt', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ userMessage }),
+  //     })
+
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch data from server')
+  //     }
+
+  //     const data = await response.json()
+  //     console.log('Received message from server:', data)
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error.message)
+  //   }
+  // }
+
+  // // Example: Send a user message to the server
+  // const userMessage = 'What is the weather like today?'
+  // fetchChatGPT(userMessage)
+
   const handleSubmit = async (e) => {
     try {
       const response = await axios.post('http://localhost:5555/tasks', taskData)
@@ -71,7 +99,6 @@ const CreateTask = () => {
           onChange={handleChange}
           required
         />
-
         <button type="submit">Submit</button>
       </form>
     </div>

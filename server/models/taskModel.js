@@ -2,12 +2,11 @@ import mongoose from 'mongoose';
 
 const commentSchema = mongoose.Schema(
   {
-    // Define the schema for comments
     text: {
       type: String,
       required: true,
     },
-    // ... other fields for comments
+   
   },
   {
     timestamps: true,
