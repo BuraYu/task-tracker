@@ -184,9 +184,15 @@ const DetailsView = ({ data, sendDataToParent }) => {
         <h3>Comments</h3>
         <ul>
           {comments.map((comment) => (
-            <li key={comment._id}>
-              {comment.text} {formatDate(comment.createdAt)}
-              <button onClick={() => handleDeleteComment(comment._id)}>
+            <li key={comment._id} className="comment-container">
+              <span className="comment-text">{comment.text}</span>
+              <span className="comment-date">
+                {formatDate(comment.createdAt)}
+              </span>
+              <button
+                className="comment-delete-button"
+                onClick={() => handleDeleteComment(comment._id)}
+              >
                 Delete
               </button>
             </li>
