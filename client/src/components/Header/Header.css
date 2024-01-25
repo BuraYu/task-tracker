@@ -1,12 +1,13 @@
-.header-div-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: grey;
-
+.header-div-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
 }
 
-.header-heading{
-    color: blue;
-    margin: 10px;
+.header-heading {
+  color: white;
+  background-color: #4e73df;
+  padding-right: 40px;
+  padding-left: 10px;
 }
