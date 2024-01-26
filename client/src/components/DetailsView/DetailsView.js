@@ -133,7 +133,7 @@ const DetailsView = ({ data, sendDataToParent }) => {
         </button>
       </div>
       <hr />
-      <h1>{task.title}</h1>
+      <h1 className="details-view-header">{task.title}</h1>
       <h4>{task.owner}</h4>
       <hr />
       <div className="status-task">

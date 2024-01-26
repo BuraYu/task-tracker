@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,400;0,600;0,700;1,200&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,400;0,600;0,700;1,200&family=Roboto:wght@400;700&display=swap');
+
 .create-task-container {
-  background-color: #f0f5ff;
+  background: #f3f4f6ff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 255, 0.1);
@@ -35,6 +38,7 @@ select {
   margin-bottom: 10px;
   border: 1px solid #0066cc;
   border-radius: 5px;
+  font-family: Manrope;
 }
 
 button {
@@ -49,4 +53,12 @@ button {
 
 button:hover {
   background-color: #00264d;
+}
+
+.create-task-header {
+  font-family: Lexend;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 44px;
+  color: #171a1fff;
 }

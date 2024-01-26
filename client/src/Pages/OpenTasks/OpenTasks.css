@@ -31,11 +31,11 @@
 }
 
 #tasks tr:nth-child(even):hover {
-  background-color: #aedeef; /* Light Blue */
+  background-color: #aedeef;
 }
 
 #tasks tr:nth-child(odd):hover {
-  background-color: #add8e6; /* Light Blue */
+  background-color: #add8e6;
 }
 
 #tasks tr:hover {
@@ -64,4 +64,36 @@ h4 {
 .select {
   display: flex;
   flex-direction: column;
+}
+
+#tasks {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tasks td,
+#tasks th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#tasks tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#tasks tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+#tasks tr:hover {
+  background-color: #ddd;
+}
+
+#tasks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4039a7;
+  color: white;
 }

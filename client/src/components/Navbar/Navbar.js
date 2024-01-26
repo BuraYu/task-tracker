@@ -1,24 +1,35 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 
 export default function Navbar() {
   return (
     <div className="navbar-container">
       <ul className="navbar-ul">
-        <li>
-          <a href="/">Dashboard</a>
+        <li className="navbar-li">
+          <NavLink exact to="/" activeClassName="active">
+            Dashboard
+          </NavLink>
         </li>
-        <li>
-          <a href="/HighPrioTasks">High Priority Tasks</a>
+        <li className="navbar-li">
+          <NavLink to="/HighPrioTasks" activeClassName="active">
+            High Priority Tasks
+          </NavLink>
         </li>
-        <li>
-          <a href="/OpenTasks">Open Tasks</a>
+        <li className="navbar-li">
+          <NavLink to="/OpenTasks" activeClassName="active">
+            Open Tasks
+          </NavLink>
         </li>
-        <li>
-          <a href="/AllTasks">All Tasks</a>
+        <li className="navbar-li">
+          <NavLink to="/AllTasks" activeClassName="active">
+            All Tasks
+          </NavLink>
         </li>
-        <li>
-          <a href="/FinishedTasks">Finished Tasks</a>
+        <li className="navbar-li">
+          <NavLink to="/FinishedTasks" activeClassName="active">
+            Finished Tasks
+          </NavLink>
         </li>
       </ul>
     </div>

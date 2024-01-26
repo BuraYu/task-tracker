@@ -58,7 +58,7 @@ const CreateTask = () => {
 
   return (
     <div className="create-task-container">
-      <h1>Create a task</h1>
+      <h1 className="create-task-header">Create a task</h1>
       <form onSubmit={handleSubmit} className="dashboard-form">
         <label htmlFor="title">Title</label>
         <input

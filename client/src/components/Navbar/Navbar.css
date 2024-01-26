@@ -24,15 +24,74 @@ a:hover:nth-child(2) {
   color: red;
 }
 
-a:focus {
-  outline: none;
-  border-bottom: 2px solid #3498db;
-}
-
 a:active {
   color: #e74c3c;
 }
 
 li {
   line-height: 0.8;
+}
+
+.navbar-container {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.navbar-container.Dashboard {
+  background-color: #3498db;
+  color: white;
+}
+
+.navbar-container.HighPrioTasks {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.navbar-container.OpenTasks {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.navbar-container.AllTasks {
+  background-color: #f39c12;
+  color: white;
+}
+
+.navbar-container.FinishedTasks {
+  background-color: #9b59b6;
+  color: white;
+}
+
+/* Navbar.css */
+
+.navbar-container {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.navbar-ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-li {
+  margin-right: 15px;
+}
+
+.navbar-li a {
+  text-decoration: none;
+  color: #333; /* Default font color */
+  padding: 5px;
+  border-left: 4px solid transparent; /* Initial border color (transparent) */
+  transition: color 0.3s, background-color 0.3s, border-left-color 0.3s; /* Add transitions for smooth effect */
+}
+
+.navbar-li a:hover {
+  color: #3498db; /* Font color on hover */
+}
+
+.navbar-li a.active {
+  color: #3498db; /* Font color for the active page */
+  border-left-color: #3498db; /* Border color for the active page */
 }
