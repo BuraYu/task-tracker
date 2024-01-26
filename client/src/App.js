@@ -2,9 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Empty from './components/Empty'
 import Dashboard from './Pages/Dashboard/Dashboard'
-import FavouriteTasks from './Pages/FavouriteTasks/FavouriteTasks'
-import CreatedByMe from './Pages/CreatedByMe/CreatedByMe'
+import AllTasks from './Pages/AllTasks/AllTasks'
 import OpenTasks from './Pages/OpenTasks/OpenTasks'
+import HighPrioTasks from './Pages/HighPrioTasks/HighPrioTasks'
+import FinishedTasks from './Pages/FinishedTasks/FinishedTasks'
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/HighPrioTasks" element={<HighPrioTasks />} />
           <Route path="/OpenTasks" element={<OpenTasks />} />
-          <Route path="/favTasks" element={<FavouriteTasks />} />
-          <Route path="/CreatedByMe" element={<CreatedByMe />} />
+          <Route path="/AllTasks" element={<AllTasks />} />
+          <Route path="/FinishedTasks" element={<FinishedTasks />} />
 
           <Route path="*" element={<Empty />} />
         </Routes>

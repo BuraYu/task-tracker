@@ -39,8 +39,25 @@ export default function Dashboard() {
     return x
   }
   //pending tasks
-
-  //In progress
+  const pendingTasks = () => {
+    let x = 0
+    tasks.forEach((element) => {
+      if (element.status !== 'Done') {
+        x++
+      }
+    })
+    return x
+  }
+  //high prio
+  const highPrioTasks = () => {
+    let x = 0
+    tasks.forEach((element) => {
+      if (element.priority === 'High') {
+        x++
+      }
+    })
+    return x
+  }
 
   return (
     <>
@@ -56,6 +73,8 @@ export default function Dashboard() {
                 className="dashboard-content"
                 totalTasks={numberTasks}
                 finishedTasks={finishedTasks()}
+                pendingTasks={pendingTasks()}
+                highPrioTasks={highPrioTasks()}
               />
               <CreateTask />
             </div>

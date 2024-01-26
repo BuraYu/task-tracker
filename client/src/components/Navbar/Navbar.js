@@ -9,13 +9,16 @@ export default function Navbar() {
           <a href="/">Dashboard</a>
         </li>
         <li>
+          <a href="/HighPrioTasks">High Priority Tasks</a>
+        </li>
+        <li>
           <a href="/OpenTasks">Open Tasks</a>
         </li>
         <li>
-          <a href="/favTasks">Favourite Tasks</a>
+          <a href="/AllTasks">All Tasks</a>
         </li>
         <li>
-          <a href="/CreatedByMe">Created By Me</a>
+          <a href="/FinishedTasks">Finished Tasks</a>
         </li>
       </ul>
     </div>

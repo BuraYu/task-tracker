@@ -30,8 +30,12 @@
   padding: 8px;
 }
 
-#tasks tr:nth-child(even) {
-  background-color: #f2f2f2;
+#tasks tr:nth-child(even):hover {
+  background-color: #aedeef; /* Light Blue */
+}
+
+#tasks tr:nth-child(odd):hover {
+  background-color: #add8e6; /* Light Blue */
 }
 
 #tasks tr:hover {
@@ -42,6 +46,22 @@
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04aa6d;
+  background-color: #4039a7;
   color: white;
+}
+
+h4 {
+  text-align: center;
+}
+
+.status-task {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
 }

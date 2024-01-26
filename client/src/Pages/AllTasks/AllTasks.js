@@ -1,6 +1,6 @@
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
-import './OpenTasks.css'
+import './AllTasks.css'
 import DetailsView from '../../components/DetailsView/DetailsView'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -45,8 +45,6 @@ const OpenTasks = () => {
     setSelectedTask({ data: clickedTask })
   }
 
-  console.log('Filtered Tasks:', tasks)
-
   return (
     <>
       <Header />
@@ -69,20 +67,18 @@ const OpenTasks = () => {
                 </thead>
                 <tbody>
                   {tasks.length > 0 ? (
-                    tasks
-                      .filter((task) => task.status !== 'Done')
-                      .map((task) => (
-                        <tr
-                          key={task._id}
-                          onClick={() => handleTaskClick(task._id)}
-                        >
-                          <td>{task.title}</td>
-                          <td>{formatDate(task.createdAt)}</td>
-                          <td>{task.status}</td>
-                          <td>{task.priority}</td>
-                          <td>{task.owner}</td>
-                        </tr>
-                      ))
+                    tasks.map((task) => (
+                      <tr
+                        key={task._id}
+                        onClick={() => handleTaskClick(task._id)}
+                      >
+                        <td>{task.title}</td>
+                        <td>{formatDate(task.createdAt)}</td>
+                        <td>{task.status}</td>
+                        <td>{task.priority}</td>
+                        <td>{task.owner}</td>
+                      </tr>
+                    ))
                   ) : (
                     <tr>
                       <td colSpan="5">No open tasks found.</td>

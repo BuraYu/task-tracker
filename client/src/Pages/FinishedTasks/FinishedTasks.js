@@ -1,6 +1,6 @@
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
-import './OpenTasks.css'
+import './FinishedTasks.css'
 import DetailsView from '../../components/DetailsView/DetailsView'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -70,7 +70,7 @@ const OpenTasks = () => {
                 <tbody>
                   {tasks.length > 0 ? (
                     tasks
-                      .filter((task) => task.status !== 'Done')
+                      .filter((task) => task.status === 'Done')
                       .map((task) => (
                         <tr
                           key={task._id}

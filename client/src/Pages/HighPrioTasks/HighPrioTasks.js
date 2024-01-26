@@ -1,12 +1,11 @@
-import React from 'react'
 import Header from '../../components/Header/Header'
 import Navbar from '../../components/Navbar/Navbar'
-import './FavouriteTasks.css'
+import './HighPrioTasks.css'
 import DetailsView from '../../components/DetailsView/DetailsView'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const FavouriteTasks = () => {
+const OpenTasks = () => {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(false)
   const [selectedTask, setSelectedTask] = useState(null)
@@ -27,17 +26,15 @@ const FavouriteTasks = () => {
   }, [receivedData])
 
   const receiveDataFromChild = (data) => {
-    console.log('Received data in parent:', data)
     setReceivedData(data)
   }
 
   function formatDate(input) {
     const date = new Date(input)
     const day = date.getDate()
-    const month = date.getMonth() + 1 // Month is zero-based
+    const month = date.getMonth() + 1
     const year = date.getFullYear()
 
-    // Pad single-digit day and month with leading zero if needed
     const formattedDay = day < 10 ? `0${day}` : day
     const formattedMonth = month < 10 ? `0${month}` : month
 
@@ -47,6 +44,8 @@ const FavouriteTasks = () => {
   const handleTaskClick = (clickedTask) => {
     setSelectedTask({ data: clickedTask })
   }
+
+  console.log('Filtered Tasks:', tasks)
 
   return (
     <>
@@ -70,18 +69,23 @@ const FavouriteTasks = () => {
                 </thead>
                 <tbody>
                   {tasks.length > 0 ? (
-                    tasks.map((task) => (
-                      <tr
-                        key={task._id}
-                        onClick={() => handleTaskClick(task._id)}
-                      >
-                        <td>{task.title}</td>
-                        <td>{formatDate(task.createdAt)}</td>
-                        <td>{task.status}</td>
-                        <td>{task.priority}</td>
-                        <td>{task.owner}</td>
-                      </tr>
-                    ))
+                    tasks
+                      .filter(
+                        (task) =>
+                          task.priority === 'High' && task.status !== 'Done'
+                      )
+                      .map((task) => (
+                        <tr
+                          key={task._id}
+                          onClick={() => handleTaskClick(task._id)}
+                        >
+                          <td>{task.title}</td>
+                          <td>{formatDate(task.createdAt)}</td>
+                          <td>{task.status}</td>
+                          <td>{task.priority}</td>
+                          <td>{task.owner}</td>
+                        </tr>
+                      ))
                   ) : (
                     <tr>
                       <td colSpan="5">No open tasks found.</td>
@@ -101,4 +105,4 @@ const FavouriteTasks = () => {
   )
 }
 
-export default FavouriteTasks
+export default OpenTasks

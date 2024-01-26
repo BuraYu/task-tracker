@@ -201,7 +201,9 @@ const DetailsView = ({ data, sendDataToParent }) => {
       </div>
     </div>
   ) : (
-    <span>Click on the task</span>
+    <div className="open-tasks--container-res">
+      <span>Click on the task for details</span>
+    </div>
   )
 }
 
