@@ -12,22 +12,23 @@ export default function DashboardContent({
   return (
     <div className="div-con">
       <DashboardBox
-        total={'Total Tasks'}
-        tasks={totalTasks}
-        colors={{ borderColor: 'green', fontColor: 'green' }}
-      />
-      <DashboardBox
         total={'High Priority Tasks'}
         tasks={highPrioTasks}
         colors={{ borderColor: 'red', fontColor: 'red' }}
       />
       <DashboardBox
-        total={'Pending Tasks'}
+        total={'Total Tasks'}
+        tasks={totalTasks}
+        colors={{ borderColor: 'green', fontColor: 'green' }}
+      />
+
+      <DashboardBox
+        total={'Open Tasks'}
         tasks={pendingTasks}
         colors={{ borderColor: 'orange', fontColor: 'orange' }}
       />
       <DashboardBox
-        total={'Finished Tasks'}
+        total={'Completed Tasks'}
         tasks={finishedTasks}
         colors={{ borderColor: 'blue', fontColor: 'blue' }}
       />

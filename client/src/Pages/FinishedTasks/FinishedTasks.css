@@ -13,7 +13,11 @@
 }
 
 .open-tasks--container-res {
-  background-color: rgb(207, 207, 207);
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
   flex: 0 0 100%;
   width: 40%;
 }

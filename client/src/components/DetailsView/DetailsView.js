@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import './DetailsView.css'
+import OpenAI from 'openai'
 
 const DetailsView = ({ data, sendDataToParent }) => {
   const [task, setTask] = useState(null)
@@ -11,6 +12,51 @@ const DetailsView = ({ data, sendDataToParent }) => {
   const [comments, setComments] = useState([])
 
   const taskId = data ? data.data : null
+
+  const fixMe = useCallback(async () => {
+    const openai = new OpenAI({
+      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+      dangerouslyAllowBrowser: true,
+    })
+
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: `You'll be provided with a task comment you'll get it as a json format, don't change the key names.  I need you to make the values to sound more professional. Please send the data back as Json format and just the message without any affixes. If the entry has "In German:" or "In Spanish:" in the beginning, give the result back in that language, without mentioning it in the response`,
+          },
+          {
+            role: 'user',
+            content: `{TaskComment: ${commentContent}}`,
+          },
+        ],
+        stream: false,
+        temperature: 0.1,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      })
+
+      if (response && response.choices && response.choices.length > 0) {
+        console.log(response.choices[0].message.content)
+        const data = response.choices[0].message.content
+        const jsonData = JSON.parse(data)
+        console.log('typeof', typeof jsonData)
+        handleTaskUpdate(jsonData)
+      } else {
+        console.log('failed')
+      }
+    } catch (error) {
+      console.error('Error in translation:', error)
+    }
+  })
+
+  const handleTaskUpdate = (jsonData) => {
+    console.log(jsonData.TaskComment)
+    setCommentContent(jsonData.TaskComment)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -127,14 +173,15 @@ const DetailsView = ({ data, sendDataToParent }) => {
   return task ? (
     <div className="open-tasks--container-res">
       <div className="details-view-title-container">
-        <span>{taskId}</span>
+        <span>
+          Created by: <em>{task.owner}</em>
+        </span>
         <button className="btn-close" onClick={() => setTask(null)}>
           X
         </button>
       </div>
       <hr />
       <h1 className="details-view-header">{task.title}</h1>
-      <h4>{task.owner}</h4>
       <hr />
       <div className="status-task">
         <div className="select">
@@ -177,8 +224,14 @@ const DetailsView = ({ data, sendDataToParent }) => {
           value={commentContent}
           onChange={(e) => setCommentContent(e.target.value)}
         />
-        <button type="submit">Add comment</button>
+        <div className="button-container">
+          <button type="submit">Add Comment</button>
+          <button type="button" className="btn-grad" onClick={fixMe}>
+            Fix me
+          </button>
+        </div>
       </form>
+
       <hr />
       <div>
         <h3>Comments</h3>

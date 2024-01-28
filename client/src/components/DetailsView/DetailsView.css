@@ -1,5 +1,4 @@
 .open-tasks--container-res {
-  background-color: #f0f0f0;
   flex: 0 0 100%;
   width: 40%;
   padding: 20px;
@@ -73,8 +72,39 @@ button[type='submit'] {
   color: white;
   padding: 8px 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #314755 0%,
+    #26a0da 51%,
+    #314755 100%
+  );
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 button[type='submit']:hover {
@@ -115,6 +145,7 @@ button:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: border-color 0.3s, box-shadow 0.3s;
+  line-height: 1.2;
 }
 
 .comment-text {

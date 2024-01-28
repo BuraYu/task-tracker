@@ -57,42 +57,44 @@ const OpenTasks = () => {
             {loading ? (
               <p>Loading...</p>
             ) : (
-              <table id="tasks">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>created on</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Owner</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tasks.length > 0 ? (
-                    tasks
-                      .filter(
-                        (task) =>
-                          task.priority === 'High' && task.status !== 'Done'
-                      )
-                      .map((task) => (
-                        <tr
-                          key={task._id}
-                          onClick={() => handleTaskClick(task._id)}
-                        >
-                          <td>{task.title}</td>
-                          <td>{formatDate(task.createdAt)}</td>
-                          <td>{task.status}</td>
-                          <td>{task.priority}</td>
-                          <td>{task.owner}</td>
-                        </tr>
-                      ))
-                  ) : (
+              <div class="table-wrapper">
+                <table class="fl-table">
+                  <thead>
                     <tr>
-                      <td colSpan="5">No open tasks found.</td>
+                      <th>Title</th>
+                      <th>created on</th>
+                      <th>Status</th>
+                      <th>Priority</th>
+                      <th>Owner</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {tasks.length > 0 ? (
+                      tasks
+                        .filter(
+                          (task) =>
+                            task.priority === 'High' && task.status !== 'Done'
+                        )
+                        .map((task) => (
+                          <tr
+                            key={task._id}
+                            onClick={() => handleTaskClick(task._id)}
+                          >
+                            <td>{task.title}</td>
+                            <td>{formatDate(task.createdAt)}</td>
+                            <td>{task.status}</td>
+                            <td>{task.priority}</td>
+                            <td>{task.owner}</td>
+                          </tr>
+                        ))
+                    ) : (
+                      <tr>
+                        <td colSpan="5">No open tasks found.</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
           <DetailsView

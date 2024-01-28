@@ -7,13 +7,17 @@
 }
 
 .open-tasks--container-fin {
-  background-color: rgb(219, 219, 219);
-  flex: 0 0 100%;
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
+  font: 0 0 100%;
   width: 60%;
 }
 
 .open-tasks--container-res {
-  background-color: rgb(207, 207, 207);
+  background-color: rgb(255, 255, 255);
   flex: 0 0 100%;
   width: 40%;
 }
@@ -31,11 +35,11 @@
 }
 
 #tasks tr:nth-child(even):hover {
-  background-color: #aedeef; /* Light Blue */
+  background-color: #aedeef;
 }
 
 #tasks tr:nth-child(odd):hover {
-  background-color: #add8e6; /* Light Blue */
+  background-color: #add8e6;
 }
 
 #tasks tr:hover {
