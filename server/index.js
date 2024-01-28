@@ -1,10 +1,11 @@
 import express from "express";
-import { PORT, mongoDBURL } from "./config.js";
+import { mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import taskRoute from "./routes/tasksRoute.js";
 import cors from "cors";
 
 const app = express();
+const PORT = 5555;
 
 //middleware that alows us to send json data
 app.use(express.json());
