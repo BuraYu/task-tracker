@@ -13,29 +13,6 @@ const CreateTask = () => {
     owner: '',
   })
 
-  // const test = () => {
-  //   fetchChatGPT('tell me a joke')
-  // }
-  // const fetchChatGPT = async (userMessage) => {
-  //   try {
-  //     const response = await fetch('http://localhost:5555/chatgpt', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ userMessage }),
-  //     })
-
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch data from server')
-  //     }
-
-  //     const data = await response.json()
-  //     console.log('Received message from server:', data)
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error.message)
-  //   }
-  // }
   const translateText = useCallback(async () => {
     const openai = new OpenAI({
       apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -106,7 +83,7 @@ const CreateTask = () => {
   return (
     <div className="create-task-container">
       <h1 className="create-task-header">Create a task</h1>
-      <form onSubmit={handleSubmit} className="dashboard-form">
+      <form onSubmit={handleSubmit} className="create-task-form">
         <label htmlFor="title">Title</label>
         <input
           type="text"
