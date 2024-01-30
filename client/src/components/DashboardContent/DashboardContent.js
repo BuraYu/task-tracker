@@ -10,7 +10,7 @@ export default function DashboardContent({
   highPrioTasks,
 }) {
   return (
-    <div className="div-con">
+    <div className="dashboard-content--container">
       <DashboardBox
         total={'High Priority Tasks'}
         tasks={highPrioTasks}
