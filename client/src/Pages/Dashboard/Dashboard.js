@@ -25,10 +25,8 @@ export default function Dashboard() {
       })
   }, [])
 
-  //task length
   const numberTasks = tasks.length
 
-  //Finished tasks
   const finishedTasks = () => {
     let x = 0
     tasks.forEach((element) => {
@@ -38,7 +36,6 @@ export default function Dashboard() {
     })
     return x
   }
-  //pending tasks
   const pendingTasks = () => {
     let x = 0
     tasks.forEach((element) => {
@@ -48,7 +45,6 @@ export default function Dashboard() {
     })
     return x
   }
-  //high prio
   const highPrioTasks = () => {
     let x = 0
     tasks.forEach((element) => {

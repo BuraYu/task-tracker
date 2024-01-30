@@ -161,7 +161,7 @@ button:hover {
 }
 
 .comment-delete-button {
-  background-color: #e74c3c; /* Alizarin Red */
+  background-color: #e74c3c;
   color: white;
   padding: 5px 10px;
   border: none;
@@ -170,10 +170,10 @@ button:hover {
 }
 
 .comment-delete-button:hover {
-  background-color: #c0392b; /* Darker Alizarin Red on hover */
+  background-color: #c0392b;
 }
 
 .comment-container:hover {
-  border-color: #3498db; /* Blue color on hover */
-  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Blue shadow on hover */
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
 }
