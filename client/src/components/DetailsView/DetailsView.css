@@ -12,7 +12,7 @@
   align-items: center;
 }
 
-.btn-close {
+.details-view--btn-close {
   background-color: #ff6961;
   color: white;
   padding: 5px 10px;
@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.btn-close:hover {
+.details-view--btn-close:hover {
   background-color: #d63031;
 }
 
@@ -30,7 +30,7 @@ hr {
   margin: 15px 0;
 }
 
-h1 {
+open-tasks--container-res > h1 {
   color: #333;
 }
 

@@ -9,25 +9,6 @@
   height: 100vh;
 }
 
-a {
-  color: black;
-  font-size: 20px;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #3498db;
-}
-
-a:hover:nth-child(2) {
-  color: red;
-}
-
-a:active {
-  color: #e74c3c;
-}
-
 .navbar-container {
   background-color: #f2f2f2;
   padding: 10px;
@@ -58,13 +39,6 @@ a:active {
   color: white;
 }
 
-/* Navbar.css */
-
-.navbar-container {
-  background-color: #f2f2f2;
-  padding: 10px;
-}
-
 .navbar-ul {
   list-style-type: none;
   padding: 0;
@@ -77,17 +51,17 @@ a:active {
 
 .navbar-li a {
   text-decoration: none;
-  color: #333; /* Default font color */
+  color: #333;
   padding: 5px;
-  border-left: 4px solid transparent; /* Initial border color (transparent) */
-  transition: color 0.3s, background-color 0.3s, border-left-color 0.3s; /* Add transitions for smooth effect */
+  border-left: 4px solid transparent;
+  transition: color 0.3s, background-color 0.3s, border-left-color 0.3s;
 }
 
 .navbar-li a:hover {
-  color: #3498db; /* Font color on hover */
+  color: #3498db;
 }
 
 .navbar-li a.active {
-  color: #3498db; /* Font color for the active page */
-  border-left-color: #3498db; /* Border color for the active page */
+  color: #3498db;
+  border-left-color: #3498db;
 }
