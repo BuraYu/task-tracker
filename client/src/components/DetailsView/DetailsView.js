@@ -176,7 +176,10 @@ const DetailsView = ({ data, sendDataToParent }) => {
         <span>
           Created by: <em>{task.owner}</em>
         </span>
-        <button className="btn-close" onClick={() => setTask(null)}>
+        <button
+          className="details-view--btn-close"
+          onClick={() => setTask(null)}
+        >
           X
         </button>
       </div>
