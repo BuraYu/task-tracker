@@ -6,6 +6,8 @@ import AllTasks from './Pages/AllTasks/AllTasks'
 import OpenTasks from './Pages/OpenTasks/OpenTasks'
 import HighPrioTasks from './Pages/HighPrioTasks/HighPrioTasks'
 import FinishedTasks from './Pages/FinishedTasks/FinishedTasks'
+import LoginButton from './components/LoginButton/LoginButton'
+import LogoutButton from './LogoutButton/LogoutButton'
 
 function App() {
   return (
