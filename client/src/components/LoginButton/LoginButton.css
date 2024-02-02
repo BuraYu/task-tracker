@@ -62,7 +62,7 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.login-button--btn {
+.login-button--btn:hover {
   background-position: right center;
   text-decoration: none;
 }

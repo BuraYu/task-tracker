@@ -17,7 +17,6 @@ function App() {
     <main>
       {isAuthenticated ? (
         <>
-          <LogoutButton />
           <Router>
             <Routes>
               <Route path="/" element={<Dashboard />} />
